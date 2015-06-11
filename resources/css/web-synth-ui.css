@@ -1,0 +1,65 @@
+.web-synth-ui {
+	font-family: 'Helvetica Neue', 'Helvetica', 'sans-serif';
+	font-size: 1em;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.web-synth-ui.knob {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: #4c4c4c;
+	border: 1px solid #ffffff;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.web-synth-ui.knob > .handle {
+	position: absolute;
+	left: 45%;
+	right: 45%;
+	top: 5%;
+	width: 10%;
+	padding-bottom: 10%;
+	border-radius: 50%;
+	background-color: #ffffff;
+}
+
+.web-synth-ui.switch {
+	display: inline-block;
+	padding: 5px;
+	margin: 0;
+	background-color: #4c4c4c;
+	border: 1px solid #ffffff;
+	border-radius: 5px;
+}
+
+.web-synth-ui.switch.segmented-switch > .pole {
+	float: left;
+	line-height: 1.2em;
+	padding: 0 5px;
+	cursor: pointer;
+	color: #ffffff;
+}
+
+.web-synth-ui.switch.segmented-switch > .pole.selected {
+	color: orange;
+}
+
+.web-synth-ui.switch.toggle-switch > .indicator {
+	width: 1.2em;
+	height: 1.2em;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+.web-synth-ui.switch.toggle-switch.on > .indicator {
+	background-color: orange;
+}

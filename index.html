@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WebDrumMachine</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+		<link rel="stylesheet" type="text/css" href="resources/css/web-synth-ui.css">
+		<link rel="stylesheet" type="text/css" href="resources/css/web-drum-machine.css">
+
+		<script type="text/javascript" src="resources/vendor/interact/interact.min.js"></script>
+
+		<script type="text/javascript" src="resources/js/web-worker-factory.js"></script>
+		<script type="text/javascript" src="resources/js/web-sequence.js"></script>
+		<script type="javascript/worker" src="resources/js/web-sequence-worker.js"></script>
+
+		<script type="text/javascript" src="resources/js/web-ahdsr.js"></script>
+		<script type="text/javascript" src="resources/js/web-noise.js"></script>
+		<script type="text/javascript" src="resources/js/web-drum.js"></script>
+		<script type="text/javascript" src="resources/js/web-synth-ui.js"></script>
+		<script type="text/javascript" src="resources/js/web-drum-machine.js"></script>
+	</head>
+	<body>
+		<h1>WebDrumMachine</h1>
+
+		<div class="drum-machine" id="drum-machine">
+			<div class="voice-controller" id="voice-controller-1">
+
+				<label>Tone Oscillator</label>
+				<div class="web-synth-ui switch segmented-switch" id="tone-osc-type">
+					<div class="pole selected" data-value="triangle">triangle</div>
+					<div class="pole" data-value="sawtooth">sawtooth</div>
+					<div class="pole" data-value="square">square</div>
+				</div>
+
+				<label>Tone Pitch - Initial</label>
+				<div class="web-synth-ui knob" id="tone-pitch-hold" data-min-value="55" data-max-value="880" data-value="110">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Pitch - Final</label>
+				<div class="web-synth-ui knob" id="tone-pitch-sustain" data-min-value="55" data-max-value="880" data-value="55">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Pitch Decay</label>
+				<div class="web-synth-ui knob" id="tone-pitch-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Pitch Curve</label>
+				<div class="web-synth-ui switch segmented-switch" id="tone-pitch-curve">
+					<div class="pole selected" data-value="linear">linear</div>
+					<div class="pole" data-value="exponential">exponential</div>
+				</div>
+
+				<label>Tone Filter</label>
+				<div class="web-synth-ui switch segmented-switch" id="tone-filter-type">
+					<div class="pole selected" data-value="lowpass">lowpass</div>
+					<div class="pole" data-value="highpass">highpass</div>
+					<div class="pole" data-value="bandpass">bandpass</div>
+				</div>
+
+				<label>Tone Filter Q</label>
+				<div class="web-synth-ui knob" id="tone-filter-q" data-min-value="0" data-max-value="10" data-value="0">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Filter Cutoff - Initial</label>
+				<div class="web-synth-ui knob" id="tone-filter-hold" data-min-value="20" data-max-value="20000" data-value="880">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Filter Cutoff - Final</label>
+				<div class="web-synth-ui knob" id="tone-filter-sustain" data-min-value="20" data-max-value="20000" data-value="110">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Filter Decay</label>
+				<div class="web-synth-ui knob" id="tone-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Filter Curve</label>
+				<div class="web-synth-ui switch segmented-switch" id="tone-filter-curve">
+					<div class="pole selected" data-value="linear">linear</div>
+					<div class="pole" data-value="exponential">exponential</div>
+				</div>
+
+				<label>Tone Level</label>
+				<div class="web-synth-ui knob" id="tone-amp-level" data-min-value="0" data-max-value="1" data-value="0.7">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Decay</label>
+				<div class="web-synth-ui knob" id="tone-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.5">
+					<div class="handle"></div>
+				</div>
+
+				<label>Tone Decay Curve</label>
+				<div class="web-synth-ui switch segmented-switch" id="tone-amp-curve">
+					<div class="pole selected" data-value="linear">linear</div>
+					<div class="pole" data-value="exponential">exponential</div>
+				</div>
+
+				<label>Noise Color</label>
+				<div class="web-synth-ui knob" id="noise-color" data-min-value="0" data-max-value="8" data-value="2">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Filter</label>
+				<div class="web-synth-ui switch segmented-switch" id="noise-filter-type">
+					<div class="pole selected" data-value="lowpass">lowpass</div>
+					<div class="pole" data-value="highpass">highpass</div>
+					<div class="pole" data-value="bandpass">bandpass</div>
+				</div>
+
+				<label>Noise Filter Q</label>
+				<div class="web-synth-ui knob" id="noise-filter-q" data-min-value="0" data-max-value="10" data-value="5">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Filter Cutoff - Initial</label>
+				<div class="web-synth-ui knob" id="noise-filter-hold" data-min-value="20" data-max-value="20000" data-value="3520">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Filter Cutoff - Final</label>
+				<div class="web-synth-ui knob" id="noise-filter-sustain" data-min-value="20" data-max-value="20000" data-value="440">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Filter Decay</label>
+				<div class="web-synth-ui knob" id="noise-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Filter Decay Curve</label>
+				<div class="web-synth-ui switch segmented-switch" id="noise-filter-curve">
+					<div class="pole selected" data-value="linear">linear</div>
+					<div class="pole" data-value="exponential">exponential</div>
+				</div>
+
+				<label>Noise Level</label>
+				<div class="web-synth-ui knob" id="noise-amp-level" data-min-value="0" data-max-value="1" data-value="0.3">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Decay</label>
+				<div class="web-synth-ui knob" id="noise-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
+					<div class="handle"></div>
+				</div>
+
+				<label>Noise Decay Curve</label>
+				<div class="web-synth-ui switch segmented-switch" id="noise-amp-curve">
+					<div class="pole selected" data-value="linear">linear</div>
+					<div class="pole" data-value="exponential">exponential</div>
+				</div>
+
+				<label>Level</label>
+				<div class="web-synth-ui knob" id="mix-gain" data-min-value="0.0" data-max-value="1.0" data-value="0.5">
+					<div class="handle"></div>
+				</div>
+				
+				<div class="web-synth-ui switch toggle-switch" id="toggle-switch">
+					<div class="indicator"></div>
+				</div>
+		
+			</div>
+		</div>
+
+	</body>
+</html>

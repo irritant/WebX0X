@@ -1,0 +1,30 @@
+{
+  "name": "WebDrumMachine",
+  "version": "1.0",
+  "authors": [
+    "Tony Wallace <tony@tonywallace.com>"
+  ],
+  "description": "HTML5 drum synthesizer and sequencer.",
+  "main": "index.html",
+  "keywords": [
+    "web",
+    "sequencer",
+    "drum",
+    "synth",
+    "music",
+    "audio"
+  ],
+  "license": "MIT",
+  "homepage": "tonywallace.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "interact": "~1.2.4"
+  }
+}
