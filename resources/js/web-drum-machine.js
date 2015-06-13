@@ -226,27 +226,41 @@ function WebDrumVoiceController(element, context) {
 		// SEQUENCE:
 
 		_self.sequenceSwitches = [];
-		for (var i = 0; i < 16; i++) {
+		var numSequenceSteps = element.querySelectorAll('.sequence-toggle-switch').length;
+		for (var i = 0; i < numSequenceSteps; i++) {
 			_self.sequenceSwitches.push(new ToggleSwitch(
 				_self.element.querySelector('.sequence-toggle-switch[data-sequence-step="' + i + '"]')
 			));
 		}
 
-		return _self;
+		return _self.resetSequence(numSequenceSteps);
 	}
 
-	this.resetSequence = function(numSteps) {
+	this.resetSequence = function(numSequenceSteps) {
 		_self.sequence.reset();
-		for (var i = 0; i < numSteps; i++) {
+		for (var i = 0; i < numSequenceSteps; i++) {
 			_self.sequence.addEvent(function(index) {
 				return function() {
 					if (_self.sequenceSwitches[index].isOn()) {
 						_self.drum.trigger();
 					}
+					_self.highlightStepAtIndex(index);
 				}
 			}(i));
 		}
 		return _self;
+	}
+
+	this.clearStepHighlights = function() {
+		var highightedSwitches = _self.element.querySelectorAll('.sequence-toggle-switch.highlighted');
+		for (var i = 0; i < highightedSwitches.length; i++) {
+			highightedSwitches[i].classList.remove('highlighted');
+		}
+	}
+
+	this.highlightStepAtIndex = function(index) {
+		_self.clearStepHighlights();
+		_self.sequenceSwitches[index].element.classList.add('highlighted');
 	}
 
 	return this.init();
@@ -263,24 +277,33 @@ function WebDrumMachine(element, context) {
 	//this.voiceController2 = null;
 	//this.voiceController3 = null;
 	//this.voiceController4 = null;
+	this.playing = false;
 
 	this.init = function() {
+
+		var voiceControllerOptions = {
+			numSequenceSteps: 32
+		};
 		
 		_self.voiceController1 = new WebDrumVoiceController(
 			_self.element.querySelector('#voice-controller-1'), 
-			_self.context).resetSequence(16);
+			_self.context,
+			voiceControllerOptions);
 		/*
 		_self.voiceController2 = new WebDrumVoiceController(
 			_self.element.querySelector('#voice-controller-2'), 
-			_self.context).resetSequence(16);
+			_self.context,
+			voiceControllerOptions);
 
 		_self.voiceController3 = new WebDrumVoiceController(
 			_self.element.querySelector('#voice-controller-3'), 
-			_self.context).resetSequence(16);
+			_self.context,
+			voiceControllerOptions);
 
 		_self.voiceController4 = new WebDrumVoiceController(
 			_self.element.querySelector('#voice-controller-3'), 
-			_self.context).resetSequence(16);
+			_self.context,
+			voiceControllerOptions);
 		*/
 		_self.sequenceTimer = new WebSequenceTimer();
 		_self.sequenceTimer.addSequence(_self.voiceController1.sequence);
@@ -290,21 +313,50 @@ function WebDrumMachine(element, context) {
 		_self.sequenceTimer.init(
 			function(timer) {
 				timer.updateIntervalWithTempo(128.0, 1/16);
-				timer.start();
-				_self.play();
 			}, 
 			function(timer, status, textStatus) {
 				console.log(textStatus);
 			});
 
+		_self.element.querySelector('#play-button').addEventListener('click', function() {
+			console.log('click');
+			if (_self.playing) {
+				_self.pause();
+			} else {
+				_self.play();
+			}
+			_self.playing = !_self.playing;
+		});
+
+		_self.element.querySelector('#stop-button').addEventListener('click', function() {
+			_self.stop();
+			_self.playing = false;
+		});
+
 		return _self;
 	}
 
 	this.play = function() {
+		_self.sequenceTimer.start();
 		_self.voiceController1.sequence.play();
 		//_self.voiceController2.sequence.play();
 		//_self.voiceController3.sequence.play();
 		//_self.voiceController4.sequence.play();
+		return _self;
+	}
+
+	this.pause = function() {
+		_self.sequenceTimer.stop();
+		_self.voiceController1.sequence.pause();
+	}
+
+	this.stop = function() {
+		_self.sequenceTimer.stop();
+		_self.voiceController1.sequence.stop();
+		_self.voiceController1.clearStepHighlights();
+		//_self.voiceController2.sequence.stop();
+		//_self.voiceController3.sequence.stop();
+		//_self.voiceController4.sequence.stop();
 		return _self;
 	}
 

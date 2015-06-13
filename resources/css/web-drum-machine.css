@@ -123,8 +123,8 @@ html, body {
 }
 
 .control-group > .web-synth-ui.segmented-switch > .pole {
-	-webkit-flex: auto;
-	flex: auto;
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
 	text-align: center;
 }
 
@@ -139,4 +139,49 @@ html, body {
 .voice-controller-sequencer > .voice-controller-sequencer-header > h3 {
 	margin: 0 0 5px 0;
 	line-height: 1.0;
+}
+
+.voice-controller-sequencer > .voice-controller-sequencer-body {
+	display: flex;
+	display: -webkit-flex;
+	align-content: space-between;
+	-webkit-align-content: space-between;
+}
+
+.sequencer-step {
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+	margin-right: 2px;
+}
+
+.sequencer-step:last-child {
+	margin-right: 0;
+}
+
+.sequencer-step > .sequence-toggle-switch {
+	background-color: #4c4c4c;
+	border: 1px solid #4c4c4c;
+	padding: 3px;
+}
+
+.sequencer-step > .sequence-toggle-switch.highlighted {
+	background-color: orange !important;
+}
+
+.sequencer-step > .sequence-toggle-switch > .indicator {
+	width: 28px !important;
+	height: 28px !important;
+	border-radius: 3px;
+	border: 1px solid #4c4c4c;
+	display: flex;
+	display: -webkit-flex;
+}
+
+.sequencer-step > .sequence-toggle-switch > .indicator > label {
+	display: block;
+	margin: auto;
+	white-space: nowrap;
+	font-size: 0.8em;
+	text-align: center;
+	color: #4c4c4c;
 }
