@@ -1,13 +1,142 @@
+* {
+	-webkit-box-sizing: border-box;
+	-mox-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 html, body {
 	font-family: 'Helvetica Neue', 'Helvetica', 'sans-serif';
 	font-size: 1em;
+	padding: 0;
+	margin: 0;
 }
 
-label {
+.drum-machine {
+	margin: 0 auto;
+	padding: 10px;
+	min-width: 1280px;
+}
+
+.voice-controller {
+	border: 1px solid #000;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.voice-controller > .voice-controller-header {
+	padding: 0 5px 5px;
+}
+
+.voice-controller > .voice-controller-header > h2 {
+	margin: 0 0 5px 0;
+	line-height: 1.0;
+}
+
+.voice-controller > .voice-controller-body {
+	display: flex;
+	display: -webkit-flex;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+.voice-controller-row {
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+	margin-bottom: 5px;
+}
+
+.voice-controller-row > .voice-controller-row-header {
+	padding: 0 5px;
+}
+
+.voice-controller-row > .voice-controller-row-header > h3 {
+	margin: 0 0 5px 0;
+	line-height: 1.0;
+}
+
+.voice-controller-row > .voice-controller-row-body {
+	display: flex;
+	display: -webkit-flex;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+.voice-controller-section {
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+	padding: 0 5px;
+	border-right: 1px solid #000;
+}
+
+.voice-controller-row:last-child .voice-controller-section:last-child {
+	border-right: 0;
+}
+
+.voice-controller-section > .voice-controller-section-header {
+
+}
+
+.voice-controller-section > .voice-controller-section-header > h4 {
+	margin: 0 0 5px 0;
+	line-height: 1.0;
+}
+
+.voice-controller-section > .voice-controller-section-body {
+	
+}
+
+.voice-controller-subsection {
+	display: flex;
+	display: -webkit-flex;
+}
+
+.control-group {
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+}
+
+.control-group:last-child {
+	margin-right: 0;
+}
+
+.control-group > label {
 	display: block;
+	width: 100%;
+	padding: 2px 5px;
+	white-space: nowrap;
+	font-size: 0.8em;
+	text-align: center;
+	background-color: #000;
+	color: #fff;
 }
 
-.web-synth-ui.knob {
+.control-group > .web-synth-ui.knob {
 	width: 50px;
 	height: 50px;
+	margin: 5px auto;
+}
+
+.control-group > .web-synth-ui.segmented-switch {
+	display: flex;
+	display: -webkit-flex;
+	margin-top: 5px; 
+}
+
+.control-group > .web-synth-ui.segmented-switch > .pole {
+	-webkit-flex: auto;
+	flex: auto;
+	text-align: center;
+}
+
+.voice-controller-sequencer {
+	padding: 5px;
+}
+
+.voice-controller-sequencer > .voice-controller-sequencer-header {
+	
+}
+
+.voice-controller-sequencer > .voice-controller-sequencer-header > h3 {
+	margin: 0 0 5px 0;
+	line-height: 1.0;
 }

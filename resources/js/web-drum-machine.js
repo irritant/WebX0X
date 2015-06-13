@@ -5,6 +5,8 @@ function WebDrumVoiceController(element, context) {
 	this.element = element;
 	this.context = context;
 	this.drum = null;
+	this.sequence = null;
+	this.sequenceSwitches = [];
 
 	this.toneOscTypeSwitch = null;
 	this.tonePitchHoldKnob = null;
@@ -43,6 +45,8 @@ function WebDrumVoiceController(element, context) {
 		_self.drum.toneAmpEnv.sustainValue = 0.0;
 		_self.drum.noiseAmpEnv.sustainValue = 0.0;
 		_self.drum.connect();
+
+		_self.sequence = new WebSequence();
 
 		// TONE:
 
@@ -219,6 +223,29 @@ function WebDrumVoiceController(element, context) {
 			}
 		}).update();
 
+		// SEQUENCE:
+
+		_self.sequenceSwitches = [];
+		for (var i = 0; i < 16; i++) {
+			_self.sequenceSwitches.push(new ToggleSwitch(
+				_self.element.querySelector('.sequence-toggle-switch[data-sequence-step="' + i + '"]')
+			));
+		}
+
+		return _self;
+	}
+
+	this.resetSequence = function(numSteps) {
+		_self.sequence.reset();
+		for (var i = 0; i < numSteps; i++) {
+			_self.sequence.addEvent(function(index) {
+				return function() {
+					if (_self.sequenceSwitches[index].isOn()) {
+						_self.drum.trigger();
+					}
+				}
+			}(i));
+		}
 		return _self;
 	}
 
@@ -231,15 +258,53 @@ function WebDrumMachine(element, context) {
 
 	this.element = element;
 	this.context = context;
+	this.sequenceTimer = null;
 	this.voiceController1 = null;
-	this.voiceController2 = null;
+	//this.voiceController2 = null;
+	//this.voiceController3 = null;
+	//this.voiceController4 = null;
 
 	this.init = function() {
 		
 		_self.voiceController1 = new WebDrumVoiceController(
 			_self.element.querySelector('#voice-controller-1'), 
-			_self.context);
+			_self.context).resetSequence(16);
+		/*
+		_self.voiceController2 = new WebDrumVoiceController(
+			_self.element.querySelector('#voice-controller-2'), 
+			_self.context).resetSequence(16);
 
+		_self.voiceController3 = new WebDrumVoiceController(
+			_self.element.querySelector('#voice-controller-3'), 
+			_self.context).resetSequence(16);
+
+		_self.voiceController4 = new WebDrumVoiceController(
+			_self.element.querySelector('#voice-controller-3'), 
+			_self.context).resetSequence(16);
+		*/
+		_self.sequenceTimer = new WebSequenceTimer();
+		_self.sequenceTimer.addSequence(_self.voiceController1.sequence);
+		//_self.sequenceTimer.addSequence(_self.voiceController2.sequence);
+		//_self.sequenceTimer.addSequence(_self.voiceController3.sequence);
+		//_self.sequenceTimer.addSequence(_self.voiceController4.sequence);
+		_self.sequenceTimer.init(
+			function(timer) {
+				timer.updateIntervalWithTempo(128.0, 1/16);
+				timer.start();
+				_self.play();
+			}, 
+			function(timer, status, textStatus) {
+				console.log(textStatus);
+			});
+
+		return _self;
+	}
+
+	this.play = function() {
+		_self.voiceController1.sequence.play();
+		//_self.voiceController2.sequence.play();
+		//_self.voiceController3.sequence.play();
+		//_self.voiceController4.sequence.play();
 		return _self;
 	}
 

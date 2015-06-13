@@ -20,152 +20,315 @@
 		<script type="text/javascript" src="resources/js/web-drum-machine.js"></script>
 	</head>
 	<body>
-		<h1>WebDrumMachine</h1>
-
 		<div class="drum-machine" id="drum-machine">
+			<h1>WebDrumMachine</h1>
 			<div class="voice-controller" id="voice-controller-1">
-
-				<label>Tone Oscillator</label>
-				<div class="web-synth-ui switch segmented-switch" id="tone-osc-type">
-					<div class="pole selected" data-value="triangle">triangle</div>
-					<div class="pole" data-value="sawtooth">sawtooth</div>
-					<div class="pole" data-value="square">square</div>
+				<div class="voice-controller-header">
+					<h2>Voice 1</h2>
 				</div>
-
-				<label>Tone Pitch - Initial</label>
-				<div class="web-synth-ui knob" id="tone-pitch-hold" data-min-value="55" data-max-value="880" data-value="110">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Pitch - Final</label>
-				<div class="web-synth-ui knob" id="tone-pitch-sustain" data-min-value="55" data-max-value="880" data-value="55">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Pitch Decay</label>
-				<div class="web-synth-ui knob" id="tone-pitch-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Pitch Curve</label>
-				<div class="web-synth-ui switch segmented-switch" id="tone-pitch-curve">
-					<div class="pole selected" data-value="linear">linear</div>
-					<div class="pole" data-value="exponential">exponential</div>
-				</div>
-
-				<label>Tone Filter</label>
-				<div class="web-synth-ui switch segmented-switch" id="tone-filter-type">
-					<div class="pole selected" data-value="lowpass">lowpass</div>
-					<div class="pole" data-value="highpass">highpass</div>
-					<div class="pole" data-value="bandpass">bandpass</div>
-				</div>
-
-				<label>Tone Filter Q</label>
-				<div class="web-synth-ui knob" id="tone-filter-q" data-min-value="0" data-max-value="10" data-value="0">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Filter Cutoff - Initial</label>
-				<div class="web-synth-ui knob" id="tone-filter-hold" data-min-value="20" data-max-value="20000" data-value="880">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Filter Cutoff - Final</label>
-				<div class="web-synth-ui knob" id="tone-filter-sustain" data-min-value="20" data-max-value="20000" data-value="110">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Filter Decay</label>
-				<div class="web-synth-ui knob" id="tone-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Filter Curve</label>
-				<div class="web-synth-ui switch segmented-switch" id="tone-filter-curve">
-					<div class="pole selected" data-value="linear">linear</div>
-					<div class="pole" data-value="exponential">exponential</div>
-				</div>
-
-				<label>Tone Level</label>
-				<div class="web-synth-ui knob" id="tone-amp-level" data-min-value="0" data-max-value="1" data-value="0.7">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Decay</label>
-				<div class="web-synth-ui knob" id="tone-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.5">
-					<div class="handle"></div>
-				</div>
-
-				<label>Tone Decay Curve</label>
-				<div class="web-synth-ui switch segmented-switch" id="tone-amp-curve">
-					<div class="pole selected" data-value="linear">linear</div>
-					<div class="pole" data-value="exponential">exponential</div>
-				</div>
-
-				<label>Noise Color</label>
-				<div class="web-synth-ui knob" id="noise-color" data-min-value="0" data-max-value="8" data-value="2">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Filter</label>
-				<div class="web-synth-ui switch segmented-switch" id="noise-filter-type">
-					<div class="pole selected" data-value="lowpass">lowpass</div>
-					<div class="pole" data-value="highpass">highpass</div>
-					<div class="pole" data-value="bandpass">bandpass</div>
-				</div>
-
-				<label>Noise Filter Q</label>
-				<div class="web-synth-ui knob" id="noise-filter-q" data-min-value="0" data-max-value="10" data-value="5">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Filter Cutoff - Initial</label>
-				<div class="web-synth-ui knob" id="noise-filter-hold" data-min-value="20" data-max-value="20000" data-value="3520">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Filter Cutoff - Final</label>
-				<div class="web-synth-ui knob" id="noise-filter-sustain" data-min-value="20" data-max-value="20000" data-value="440">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Filter Decay</label>
-				<div class="web-synth-ui knob" id="noise-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Filter Decay Curve</label>
-				<div class="web-synth-ui switch segmented-switch" id="noise-filter-curve">
-					<div class="pole selected" data-value="linear">linear</div>
-					<div class="pole" data-value="exponential">exponential</div>
-				</div>
-
-				<label>Noise Level</label>
-				<div class="web-synth-ui knob" id="noise-amp-level" data-min-value="0" data-max-value="1" data-value="0.3">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Decay</label>
-				<div class="web-synth-ui knob" id="noise-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
-					<div class="handle"></div>
-				</div>
-
-				<label>Noise Decay Curve</label>
-				<div class="web-synth-ui switch segmented-switch" id="noise-amp-curve">
-					<div class="pole selected" data-value="linear">linear</div>
-					<div class="pole" data-value="exponential">exponential</div>
-				</div>
-
-				<label>Level</label>
-				<div class="web-synth-ui knob" id="mix-gain" data-min-value="0.0" data-max-value="1.0" data-value="0.5">
-					<div class="handle"></div>
-				</div>
+				<div class="voice-controller-body">
+					<div class="voice-controller-row">
+						<div class="voice-controller-row-header">
+							<h3>Tone</h3>
+						</div>
+						<div class="voice-controller-row-body">
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Oscillator</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Initial Pitch</label>
+										<div class="web-synth-ui knob" id="tone-pitch-hold" data-min-value="55" data-max-value="880" data-value="110">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Final Pitch</label>
+										<div class="web-synth-ui knob" id="tone-pitch-sustain" data-min-value="55" data-max-value="880" data-value="55">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Pitch Decay</label>
+										<div class="web-synth-ui knob" id="tone-pitch-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Waveform</label>
+										<div class="web-synth-ui switch segmented-switch" id="tone-osc-type">
+											<div class="pole selected" data-value="triangle">tri</div>
+											<div class="pole" data-value="sawtooth">saw</div>
+											<div class="pole" data-value="square">squ</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Decay Curve</label>
+										<div class="web-synth-ui switch segmented-switch" id="tone-pitch-curve">
+											<div class="pole selected" data-value="linear">lin</div>
+											<div class="pole" data-value="exponential">exp</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Tone Oscillator -->
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Filter</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Initial Cutoff</label>
+										<div class="web-synth-ui knob" id="tone-filter-hold" data-min-value="20" data-max-value="20000" data-value="880">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Final Cutoff</label>
+										<div class="web-synth-ui knob" id="tone-filter-sustain" data-min-value="20" data-max-value="20000" data-value="110">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Cutoff Decay</label>
+										<div class="web-synth-ui knob" id="tone-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.1">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Q</label>
+										<div class="web-synth-ui knob" id="tone-filter-q" data-min-value="0" data-max-value="10" data-value="0">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Type</label>
+										<div class="web-synth-ui switch segmented-switch" id="tone-filter-type">
+											<div class="pole selected" data-value="lowpass">lp</div>
+											<div class="pole" data-value="highpass">hp</div>
+											<div class="pole" data-value="bandpass">bp</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Decay Curve</label>
+										<div class="web-synth-ui switch segmented-switch" id="tone-filter-curve">
+											<div class="pole selected" data-value="linear">lin</div>
+											<div class="pole" data-value="exponential">exp</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Tone Filter -->
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Amp</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Level</label>
+										<div class="web-synth-ui knob" id="tone-amp-level" data-min-value="0" data-max-value="1" data-value="0.7">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Decay</label>
+										<div class="web-synth-ui knob" id="tone-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.5">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Decay Curve</label>
+										<div class="web-synth-ui switch segmented-switch" id="tone-amp-curve">
+											<div class="pole selected" data-value="linear">lin</div>
+											<div class="pole" data-value="exponential">exp</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Tone Amp -->
+						</div>
+					</div><!-- Voice Controller Row: Tone -->
+					
+					<div class="voice-controller-row">
+						<div class="voice-controller-row-header">
+							<h3>Noise</h3>
+						</div>
+						<div class="voice-controller-row-body">
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Oscillator</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Color</label>
+										<div class="web-synth-ui knob" id="noise-color" data-min-value="0" data-max-value="8" data-value="2">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Noise Oscillator -->
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Filter</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Initial Cutoff</label>
+										<div class="web-synth-ui knob" id="noise-filter-hold" data-min-value="20" data-max-value="20000" data-value="3520">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Final Cutoff</label>
+										<div class="web-synth-ui knob" id="noise-filter-sustain" data-min-value="20" data-max-value="20000" data-value="440">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Cutoff Decay</label>
+										<div class="web-synth-ui knob" id="noise-filter-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Q</label>
+										<div class="web-synth-ui knob" id="noise-filter-q" data-min-value="0" data-max-value="10" data-value="5">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Type</label>
+										<div class="web-synth-ui switch segmented-switch" id="noise-filter-type">
+											<div class="pole selected" data-value="lowpass">lp</div>
+											<div class="pole" data-value="highpass">hp</div>
+											<div class="pole" data-value="bandpass">bp</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Decay Curve</label>
+										<div class="web-synth-ui switch segmented-switch" id="noise-filter-curve">
+											<div class="pole selected" data-value="linear">lin</div>
+											<div class="pole" data-value="exponential">exp</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Noise Filter -->
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>Amp</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Level</label>
+										<div class="web-synth-ui knob" id="noise-amp-level" data-min-value="0" data-max-value="1" data-value="0.3">
+											<div class="handle"></div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label>Decay</label>
+										<div class="web-synth-ui knob" id="noise-amp-decay" data-min-value="0.05" data-max-value="2.0" data-value="0.05">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Decay Curve</label>
+										<div class="web-synth-ui switch segmented-switch" id="noise-amp-curve">
+											<div class="pole selected" data-value="linear">lin</div>
+											<div class="pole" data-value="exponential">exp</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Noise Amp -->
+						</div>
+					</div><!-- Voice Controller Row: Noise -->
+					<div class="voice-controller-row">
+						<div class="voice-controller-row-header">
+							<h3>Mix</h3>
+						</div>
+						<div class="voice-controller-row-body">
+							<div class="voice-controller-section">
+								<div class="voice-controller-section-header">
+									<h4>&nbsp;</h4>
+								</div>
+								<div class="voice-controller-subsection">
+									<div class="control-group">
+										<label>Level</label>
+										<div class="web-synth-ui knob" id="mix-gain" data-min-value="0.0" data-max-value="1.0" data-value="0.5">
+											<div class="handle"></div>
+										</div>
+									</div>
+								</div>
+							</div><!-- Voice Controller Section: Mix Amp -->
+						</div>
+					</div><!-- Voice Controller Row: Mix -->
+				</div><!-- Voice Controller Body -->
 				
-				<div class="web-synth-ui switch toggle-switch" id="toggle-switch">
-					<div class="indicator"></div>
-				</div>
+				<div class="voice-controller-sequencer">
+					<div class="voice-controller-sequencer-header">
+						<h3>Sequencer</h3>
+					</div>
+					<div class="voice-controller-sequencer-body">
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="0">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="1">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="2">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="3">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="4">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="5">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="6">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="7">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="8">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="9">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="10">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="11">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="12">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="13">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="14">
+							<div class="indicator"></div>
+						</div>
+						<div class="web-synth-ui switch toggle-switch sequence-toggle-switch" data-sequence-step="15">
+							<div class="indicator"></div>
+						</div>
+					</div>
+				</div><!-- Sequencer -->
 		
-			</div>
+			</div><!-- Voice Controller -->
+
 		</div>
 
 	</body>
