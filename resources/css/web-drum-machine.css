@@ -15,10 +15,54 @@ html, body {
 	margin: 0 auto;
 	padding: 10px;
 	min-width: 1280px;
+	scroll-x: auto;
+}
+
+.drum-machine > h1 {
+	margin: 0;
+}
+
+.transport-controls {
+	padding: 5px 0;
+	overflow: hidden;
+}
+
+.transport-controls > .transport-controls-left {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+
+.transport-controls > .transport-controls-right {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+
+.transport-controls button {
+	width: 28px;
+	height: 28px;
+	background: 0;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 5px;
+	font-size: 1em;
+}
+
+.transport-controls input {
+	width: 3em;
+	height: 28px;
+	padding: 2px;
+	background: 0;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 5px;
+	font-size: 1em;
 }
 
 .voice-controller {
 	border: 1px solid #000;
+	border-radius: 5px;
 	overflow: hidden;
 	padding: 5px;
 }
@@ -108,6 +152,16 @@ html, body {
 	text-align: center;
 	background-color: #000;
 	color: #fff;
+}
+
+.control-group:first-child > label {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.control-group:last-child > label {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .control-group > .web-synth-ui.knob {

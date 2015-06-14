@@ -26,5 +26,8 @@
   ],
   "dependencies": {
     "interact": "~1.2.4"
+  },
+  "devDependencies": {
+    "font-awesome": "~4.3.0"
   }
 }

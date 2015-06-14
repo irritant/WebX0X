@@ -4,6 +4,7 @@
 		<title>WebDrumMachine</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		
+		<link rel="stylesheet" type="text/css" href="resources/vendor/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/web-synth-ui.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/web-drum-machine.css">
 
@@ -22,9 +23,21 @@
 	<body>
 		<div class="drum-machine" id="drum-machine">
 			<h1>WebDrumMachine</h1>
-			<div class="controls">
-				<button id="play-button">Play</button>
-				<button id="stop-button">Stop</button>
+			<div class="transport-controls">
+				<div class="transport-controls-left">
+					<button id="play-button">
+						<i class="fa fa-play"></i>
+					</button>
+					<button id="stop-button">
+						<i class="fa fa-stop"></i>
+					</button>
+				</div>
+				<div class="transport-controls-right">
+					<form id="tempo-form">
+						<label for="tempo-input">Tempo: </label>
+						<input id="tempo-input" type="number" value="120" min="32" max="320" step="1">
+					</form>
+				</div>
 			</div>
 			<div class="voice-controller" id="voice-controller-1">
 				<div class="voice-controller-header">

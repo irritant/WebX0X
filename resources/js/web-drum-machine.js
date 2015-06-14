@@ -236,6 +236,18 @@ function WebDrumVoiceController(element, context) {
 		return _self.resetSequence(numSequenceSteps);
 	}
 
+	this.playSequence = function() {
+		_self.sequence.play();
+	}
+
+	this.pauseSequence = function() {
+		_self.sequence.pause();
+	}
+
+	this.stopSequence = function() {
+		_self.sequence.stop();
+	}
+
 	this.resetSequence = function(numSequenceSteps) {
 		_self.sequence.reset();
 		for (var i = 0; i < numSequenceSteps; i++) {
@@ -273,10 +285,7 @@ function WebDrumMachine(element, context) {
 	this.element = element;
 	this.context = context;
 	this.sequenceTimer = null;
-	this.voiceController1 = null;
-	//this.voiceController2 = null;
-	//this.voiceController3 = null;
-	//this.voiceController4 = null;
+	this.voiceControllers = [];
 	this.playing = false;
 
 	this.init = function() {
@@ -284,53 +293,50 @@ function WebDrumMachine(element, context) {
 		var voiceControllerOptions = {
 			numSequenceSteps: 32
 		};
-		
-		_self.voiceController1 = new WebDrumVoiceController(
-			_self.element.querySelector('#voice-controller-1'), 
-			_self.context,
-			voiceControllerOptions);
-		/*
-		_self.voiceController2 = new WebDrumVoiceController(
-			_self.element.querySelector('#voice-controller-2'), 
-			_self.context,
-			voiceControllerOptions);
 
-		_self.voiceController3 = new WebDrumVoiceController(
-			_self.element.querySelector('#voice-controller-3'), 
-			_self.context,
-			voiceControllerOptions);
-
-		_self.voiceController4 = new WebDrumVoiceController(
-			_self.element.querySelector('#voice-controller-3'), 
-			_self.context,
-			voiceControllerOptions);
-		*/
 		_self.sequenceTimer = new WebSequenceTimer();
-		_self.sequenceTimer.addSequence(_self.voiceController1.sequence);
-		//_self.sequenceTimer.addSequence(_self.voiceController2.sequence);
-		//_self.sequenceTimer.addSequence(_self.voiceController3.sequence);
-		//_self.sequenceTimer.addSequence(_self.voiceController4.sequence);
+		_self.voiceControllers = [];
+
+		var voiceControllerElements = _self.element.querySelectorAll('.voice-controller');
+		for (var i = 0; i < voiceControllerElements.length; i++) {
+			var voiceController = new WebDrumVoiceController(
+				voiceControllerElements[i], 
+				_self.context,
+				voiceControllerOptions);
+			_self.voiceControllers.push(voiceController);
+			_self.sequenceTimer.addSequence(voiceController.sequence);
+		}
+
 		_self.sequenceTimer.init(
 			function(timer) {
-				timer.updateIntervalWithTempo(128.0, 1/16);
+				_self.updateTempo();
 			}, 
 			function(timer, status, textStatus) {
 				console.log(textStatus);
 			});
 
 		_self.element.querySelector('#play-button').addEventListener('click', function() {
-			console.log('click');
 			if (_self.playing) {
 				_self.pause();
 			} else {
 				_self.play();
 			}
 			_self.playing = !_self.playing;
+			_self.refreshTransportControls();
 		});
 
 		_self.element.querySelector('#stop-button').addEventListener('click', function() {
 			_self.stop();
 			_self.playing = false;
+			_self.refreshTransportControls();
+		});
+
+		_self.element.querySelector('#tempo-input').addEventListener('change', function() {
+			_self.updateTempo();
+		});
+
+		_self.element.querySelector('#tempo-form').addEventListener('submit', function(e) {
+			e.preventDefault();
 		});
 
 		return _self;
@@ -338,26 +344,44 @@ function WebDrumMachine(element, context) {
 
 	this.play = function() {
 		_self.sequenceTimer.start();
-		_self.voiceController1.sequence.play();
-		//_self.voiceController2.sequence.play();
-		//_self.voiceController3.sequence.play();
-		//_self.voiceController4.sequence.play();
+		for (var i = 0; i < _self.voiceControllers.length; i++) {
+			_self.voiceControllers[i].playSequence();
+		}
 		return _self;
 	}
 
 	this.pause = function() {
 		_self.sequenceTimer.stop();
-		_self.voiceController1.sequence.pause();
+		for (var i = 0; i < _self.voiceControllers.length; i++) {
+			_self.voiceControllers[i].pauseSequence();
+		}
 	}
 
 	this.stop = function() {
 		_self.sequenceTimer.stop();
-		_self.voiceController1.sequence.stop();
-		_self.voiceController1.clearStepHighlights();
-		//_self.voiceController2.sequence.stop();
-		//_self.voiceController3.sequence.stop();
-		//_self.voiceController4.sequence.stop();
+		for (var i = 0; i < _self.voiceControllers.length; i++) {
+			_self.voiceControllers[i].stopSequence();
+			_self.voiceControllers[i].clearStepHighlights();
+		}
 		return _self;
+	}
+
+	this.refreshTransportControls = function() {
+		var playButtonIcon = _self.element.querySelector('#play-button > i');
+		if (_self.playing) {
+			playButtonIcon.classList.remove('fa-play');
+			playButtonIcon.classList.add('fa-pause');
+		} else {
+			playButtonIcon.classList.remove('fa-pause');
+			playButtonIcon.classList.add('fa-play');
+		}
+	}
+
+	this.updateTempo = function() {
+		var tempo = parseFloat(_self.element.querySelector('#tempo-input').value);
+		if (!isNaN(tempo)) {
+			_self.sequenceTimer.updateIntervalWithTempo(tempo, 1/16);
+		}
 	}
 
 	return this.init();
