@@ -2,6 +2,16 @@
 	-webkit-box-sizing: border-box;
 	-mox-box-sizing: border-box;
 	box-sizing: border-box;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+*:focus {
+	outline: 0;
 }
 
 html, body {
@@ -43,10 +53,14 @@ html, body {
 	width: 28px;
 	height: 28px;
 	background: 0;
-	background-color: #fff;
-	border: 1px solid #000;
+	background-color: #e7e7e7;
+	border: 1px solid #4c4c4c;
 	border-radius: 5px;
 	font-size: 1em;
+}
+
+.transport-controls button.on {
+	background-color: orange;
 }
 
 .transport-controls input {
@@ -54,17 +68,18 @@ html, body {
 	height: 28px;
 	padding: 2px;
 	background: 0;
-	background-color: #fff;
-	border: 1px solid #000;
+	background-color: #e7e7e7;
+	border: 1px solid #4c4c4c;
 	border-radius: 5px;
 	font-size: 1em;
 }
 
 .voice-controller {
-	border: 1px solid #000;
+	border: 1px solid #4c4c4c;
 	border-radius: 5px;
 	overflow: hidden;
 	padding: 5px;
+	margin-bottom: 10px;
 }
 
 .voice-controller > .voice-controller-header {
@@ -109,24 +124,16 @@ html, body {
 	-webkit-flex: 1 0 auto;
 	flex: 1 0 auto;
 	padding: 0 5px;
-	border-right: 1px solid #000;
+	border-right: 1px solid #4c4c4c;
 }
 
 .voice-controller-row:last-child .voice-controller-section:last-child {
 	border-right: 0;
 }
 
-.voice-controller-section > .voice-controller-section-header {
-
-}
-
 .voice-controller-section > .voice-controller-section-header > h4 {
 	margin: 0 0 5px 0;
 	line-height: 1.0;
-}
-
-.voice-controller-section > .voice-controller-section-body {
-	
 }
 
 .voice-controller-subsection {
@@ -150,24 +157,32 @@ html, body {
 	white-space: nowrap;
 	font-size: 0.8em;
 	text-align: center;
-	background-color: #000;
-	color: #fff;
+	background-color: #e7e7e7;
+	color: #000;
+	border-top: 1px solid #4c4c4c;
+	border-bottom: 1px solid #4c4c4c;
 }
 
 .control-group:first-child > label {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
+	border-left: 1px solid #4c4c4c;
 }
 
 .control-group:last-child > label {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	border-right: 1px solid #4c4c4c;
 }
 
 .control-group > .web-synth-ui.knob {
 	width: 50px;
 	height: 50px;
 	margin: 5px auto;
+}
+
+.control-group > .web-synth-ui.knob > .handle {
+	background-color: #e7e7e7;
 }
 
 .control-group > .web-synth-ui.segmented-switch {
@@ -180,6 +195,7 @@ html, body {
 	-webkit-flex: 1 0 auto;
 	flex: 1 0 auto;
 	text-align: center;
+	color: #e7e7e7;
 }
 
 .voice-controller-sequencer {
@@ -229,13 +245,38 @@ html, body {
 	border: 1px solid #4c4c4c;
 	display: flex;
 	display: -webkit-flex;
+	background-color: #e7e7e7 !important;
+}
+
+.sequencer-step > .sequence-toggle-switch.on > .indicator {
+	background-color: orange !important;
 }
 
 .sequencer-step > .sequence-toggle-switch > .indicator > label {
 	display: block;
 	margin: auto;
+	padding: 2px;
 	white-space: nowrap;
 	font-size: 0.8em;
 	text-align: center;
-	color: #4c4c4c;
+	background-color: transparent;
+	color: #000;
+}
+
+.sequencer-step:nth-child(4n+1) > .sequence-toggle-switch > .indicator {
+	background-color: #4c4c4c !important;
+	border-color: #e7e7e7 !important;
+}
+
+.sequencer-step:nth-child(4n+1) > .sequence-toggle-switch.on > .indicator {
+	background-color: #4c4c4c !important;
+	border-color: orange !important;
+}
+
+.sequencer-step:nth-child(4n+1) > .sequence-toggle-switch > .indicator > label {
+	color: #e7e7e7;
+}
+
+.sequencer-step:nth-child(4n+1) > .sequence-toggle-switch.on > .indicator > label {
+	color: orange;
 }

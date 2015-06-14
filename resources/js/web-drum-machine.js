@@ -367,11 +367,14 @@ function WebDrumMachine(element, context) {
 	}
 
 	this.refreshTransportControls = function() {
+		var playButton = _self.element.querySelector('#play-button');
 		var playButtonIcon = _self.element.querySelector('#play-button > i');
 		if (_self.playing) {
+			playButton.classList.add('on');
 			playButtonIcon.classList.remove('fa-play');
 			playButtonIcon.classList.add('fa-pause');
 		} else {
+			playButton.classList.remove('on');
 			playButtonIcon.classList.remove('fa-pause');
 			playButtonIcon.classList.add('fa-play');
 		}
