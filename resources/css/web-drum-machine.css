@@ -185,10 +185,23 @@ html, body {
 	background-color: #e7e7e7;
 }
 
-.control-group > .web-synth-ui.segmented-switch {
+.control-group > .web-synth-ui.segmented-switch,
+.control-group > .web-synth-ui.toggle-switch {
 	display: flex;
 	display: -webkit-flex;
 	margin-top: 5px; 
+}
+
+.control-group > .web-synth-ui.toggle-switch > .indicator {
+	background-color: #e7e7e7 !important;
+}
+
+.control-group > .web-synth-ui.toggle-switch.on > .indicator {
+	background-color: orange !important;
+}
+
+.control-group > .web-synth-ui.toggle-switch > .indicator {
+	width: 100%;
 }
 
 .control-group > .web-synth-ui.segmented-switch > .pole {

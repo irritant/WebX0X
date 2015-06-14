@@ -4,6 +4,7 @@ function WebDrumVoiceController(element, context) {
 
 	this.element = element;
 	this.context = context;
+	this.muted = false;
 	this.drum = null;
 	this.sequence = null;
 	this.sequenceSwitches = [];
@@ -37,6 +38,7 @@ function WebDrumVoiceController(element, context) {
 	this.noiseAmpCurveSwitch = null;
 
 	this.mixGainKnob = null;
+	this.mixMuteSwitch = null;
 	this.toggleSwitch = null;
 
 	this.init = function() {
@@ -217,16 +219,16 @@ function WebDrumVoiceController(element, context) {
 			}
 		}).update();
 
-		_self.toggleSwitch = new ToggleSwitch(_self.element.querySelector('#toggle-switch'), {
+		_self.mixMuteSwitch = new ToggleSwitch(_self.element.querySelector('#mix-mute'), {
 			onUpdate: function(on) {
-				_self.drum.trigger();
+				_self.muted = on;
 			}
 		}).update();
 
 		// SEQUENCE:
 
 		_self.sequenceSwitches = [];
-		var numSequenceSteps = element.querySelectorAll('.sequence-toggle-switch').length;
+		var numSequenceSteps = _self.element.querySelectorAll('.sequence-toggle-switch').length;
 		for (var i = 0; i < numSequenceSteps; i++) {
 			_self.sequenceSwitches.push(new ToggleSwitch(
 				_self.element.querySelector('.sequence-toggle-switch[data-sequence-step="' + i + '"]')
@@ -253,7 +255,7 @@ function WebDrumVoiceController(element, context) {
 		for (var i = 0; i < numSequenceSteps; i++) {
 			_self.sequence.addEvent(function(index) {
 				return function() {
-					if (_self.sequenceSwitches[index].isOn()) {
+					if (_self.sequenceSwitches[index].isOn() && !_self.muted) {
 						_self.drum.trigger();
 					}
 					_self.highlightStepAtIndex(index);
