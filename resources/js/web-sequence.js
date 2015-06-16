@@ -34,7 +34,7 @@ function WebSequenceTimer() {
 	// Public:
 
 	this.init = function(onSuccess, onError) {
-		var workerURL = document.querySelector('script[src$="web-sequence-worker.js"]').src;
+		var workerURL = document.querySelector('script[src$="worker.min.js"]').src;
 		if (workerURL) {
 			var factory = new WebWorkerFactory();
 			factory.makeWorkerUsingScriptAtURL(
