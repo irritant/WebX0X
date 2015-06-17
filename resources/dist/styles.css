@@ -90,7 +90,6 @@ html, body {
 	margin: 0 auto;
 	padding: 10px;
 	min-width: 1280px;
-	scroll-x: auto;
 }
 
 .drum-machine > h1 {
