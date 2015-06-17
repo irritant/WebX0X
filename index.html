@@ -4,6 +4,20 @@
 		<title>WebX0X</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		
+		<style>
+			/* General styles are located in the head to keep styles.min.css portable:; */
+			html, body {
+				font-family: 'Helvetica Neue', 'Helvetica', 'sans-serif';
+				font-size: 1em;
+				padding: 10px;
+				margin: 0;
+			}
+
+			.title {
+				margin: 0 0 5px 0;
+			}
+		</style>
+
 		<link rel="stylesheet" type="text/css" href="resources/vendor/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="resources/dist/styles.min.css">
 
@@ -12,8 +26,11 @@
 		<script type="javascript/worker" src="resources/dist/worker.min.js"></script>
 	</head>
 	<body>
+		<h1 class="title">WebX0X</h1>
 		<div class="drum-machine" id="drum-machine">
-			<h1>WebX0X</h1>
+			<div class="mask">
+				<h1><a class="start" href="#">Start</a></h1>
+			</div>
 
 			<div class="transport-controls">
 				<div class="transport-controls-left">

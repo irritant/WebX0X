@@ -393,21 +393,28 @@ function WebDrumMachine(element, context) {
 }
 
 window.addEventListener('load', function() {
+	document.querySelector('.mask .start').addEventListener('click', function(e) {
+		e.preventDefault();
 
-	// Obtain a new audio context:
-	var context = null;
-	if (typeof window.AudioContext != 'undefined') {
-		context = new AudioContext();
-	} else if (typeof window.webkitAudioContext != 'undefined') {
-		context = new webkitAudioContext();
-	}
+		// Hide the mask:
+		document.querySelector('.mask').classList.add('hidden');
 
-	if (!context) {
-		console.log('Web Audio API is not supported.');
-		return;
-	}
+		// Obtain a new audio context:
+		var context = null;
+		if (typeof window.AudioContext != 'undefined') {
+			context = new AudioContext();
+		} else if (typeof window.webkitAudioContext != 'undefined') {
+			context = new webkitAudioContext();
+		}
 
-	window.drumMachine = new WebDrumMachine(
-		document.querySelector('#drum-machine'), 
-		context);
+		if (!context) {
+			alert('Sorry, your browser does not support the Web Audio API.');
+			return;
+		}
+
+		// Build the drum machine:
+		window.drumMachine = new WebDrumMachine(
+			document.querySelector('#drum-machine'), 
+			context);
+	});
 });
