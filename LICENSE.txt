@@ -1,4 +1,4 @@
-WebDrumMachine is made available under the MIT License:
+WebX0X is made available under the MIT License:
 
 Copyright (c) 2015 Tony Wallace
 

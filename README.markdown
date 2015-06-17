@@ -1,8 +1,10 @@
-# WebDrumMachine
-HTML5 drum synthesizer and sequencer. This is a work in progress and is not ready for production.  
+# WebX0X
+Web Audio drum synthesizer and sequencer.  
+
+WebX0X supports recent versions of Chrome, Firefox and Safari. Chrome works best. Internet Explorer does not support Web Audio. Support for mobile browsers is planned for the near future.  
 
 ## License
-WebDrumMachine is made available under the MIT License. See LICENSE.txt for details.  
+WebX0X is made available under the MIT License. See LICENSE.txt for details.  
 
 ## Credits
-WebDrumMachine was created by [Tony Wallace](http://tonywallace.ca).  
+WebX0X was created by [Tony Wallace](http://tonywallace.ca).  
