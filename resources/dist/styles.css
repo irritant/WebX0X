@@ -67,6 +67,9 @@
 	-webkit-box-sizing: border-box;
 	-mox-box-sizing: border-box;
 	box-sizing: border-box;
+}
+
+*:not(input) {
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -82,7 +85,6 @@
 .drum-machine {
 	position: relative;
 	margin: 0 auto;
-	min-width: 1280px;
 }
 
 .drum-machine > .mask {
@@ -142,8 +144,9 @@
 }
 
 .transport-controls button {
-	width: 28px;
-	height: 28px;
+	height: 2em;
+	padding: 2px 1em;
+	-webkit-background: 0;
 	background: 0;
 	background-color: #e7e7e7;
 	border: 1px solid #4c4c4c;
@@ -157,7 +160,7 @@
 
 .transport-controls input {
 	width: 3em;
-	height: 28px;
+	height: 2em;
 	padding: 2px;
 	background: 0;
 	background-color: #e7e7e7;
@@ -317,26 +320,30 @@
 }
 
 .voice-controller-sequencer > .voice-controller-sequencer-body {
-	display: flex;
-	display: -webkit-flex;
-	align-content: space-between;
-	-webkit-align-content: space-between;
+	
+}
+
+.sequencer-step-group {
+	overflow: hidden;
+	float: left;
+	width: 25%;
 }
 
 .sequencer-step {
-	-webkit-flex: 1 0 auto;
-	flex: 1 0 auto;
-	margin-right: 2px;
+	float: left;
+	width: 12.5%;
+	padding-right: 3px;
 }
 
-.sequencer-step:last-child {
-	margin-right: 0;
+.sequencer-step-group:nth-child(4n+4) > .sequencer-step:last-child {
+	padding-right: 0;
 }
 
 .sequencer-step > .sequence-toggle-switch {
 	background-color: #4c4c4c;
 	border: 1px solid #4c4c4c;
 	padding: 3px;
+	width: 100%;
 }
 
 .sequencer-step > .sequence-toggle-switch.highlighted {
@@ -344,8 +351,8 @@
 }
 
 .sequencer-step > .sequence-toggle-switch > .indicator {
-	width: 28px !important;
-	height: 28px !important;
+	width: 100% !important;
+	height: 100% !important;
 	border-radius: 3px;
 	border: 1px solid #4c4c4c;
 	display: flex;
@@ -384,4 +391,50 @@
 
 .sequencer-step:nth-child(4n+1) > .sequence-toggle-switch.on > .indicator > label {
 	color: orange;
+}
+
+@media (max-width: 1279px) {
+
+	.voice-controller > .voice-controller-body {
+		display: block;
+		overflow: hidden;
+	}
+
+	.voice-controller-row {
+		-webkit-flex: none;
+		none;
+		float: left;
+		width: 100%;
+	}
+
+	.voice-controller-row:nth-child(2) {
+		width: 80%
+	}
+
+	.voice-controller-row:nth-child(3) {
+		width: 20%;
+	}
+
+	.voice-controller-row:not(:nth-child(2)) .voice-controller-section:last-child {
+		border-right: 0;
+	}
+
+	.voice-controller-sequencer > .voice-controller-sequencer-body {
+		display: block;
+	}
+
+	.sequencer-step-group {
+		float: left;
+		width: 50%;
+		margin-bottom: 5px;
+	}
+
+	.sequencer-step-group:nth-child(2n+2) > .sequencer-step:last-child {
+		padding-right: 0;
+	}
+
+}
+
+@media (max-width: 719px) {
+
 }
