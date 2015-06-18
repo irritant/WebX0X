@@ -341,6 +341,10 @@ function WebDrumMachine(element, context) {
 			e.preventDefault();
 		});
 
+		if (FastClick) {
+			FastClick.attach(_self.element);
+		}
+
 		return _self;
 	}
 

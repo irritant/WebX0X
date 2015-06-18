@@ -28,6 +28,7 @@
     "interact": "~1.2.4"
   },
   "devDependencies": {
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "fastclick": "~1.0.6"
   }
 }

@@ -10,6 +10,7 @@ var notify = require('gulp-notify');
 
 var paths = {
     js: [
+        'resources/vendor/fastclick/lib/fastclick.js',
         'resources/js/web-worker-factory.js',
         'resources/js/web-sequence.js',
         'resources/js/web-ahdsr.js',
