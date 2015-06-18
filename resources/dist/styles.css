@@ -402,7 +402,7 @@
 
 	.voice-controller-row {
 		-webkit-flex: none;
-		none;
+		flex: none;
 		float: left;
 		width: 100%;
 	}
@@ -435,6 +435,35 @@
 
 }
 
-@media (max-width: 719px) {
+@media (max-width: 699px) {
+
+	.voice-controller-row {
+		-webkit-flex: none;
+		flex: none;
+		float: left;
+		width: 100% !important;
+	}
+
+	.voice-controller-row > .voice-controller-row-body {
+		display: block;
+	}
+
+	.voice-controller-section {
+		-webkit-flex: none;
+		flex: none;
+		width: 100%;
+		padding: 5px;
+		border-right: 0;
+	}
+
+	.sequencer-step-group {
+		float: none;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	.sequencer-step-group > .sequencer-step:last-child {
+		padding-right: 0;
+	}
 
 }
