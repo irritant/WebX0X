@@ -449,7 +449,11 @@ function WebDrumMachine(element, context) {
 	this.routeMIDIData = function(parsedData) {
 		switch (parsedData.type) {
 			case 144:
-				_self.MIDINoteOn(parsedData.note, parsedData.velocity);
+				if (parsedData.velocity > 0) {
+					_self.MIDINoteOn(parsedData.note, parsedData.velocity);
+				} else {
+					_self.MIDINoteOff(parsedData.note, parsedData.velocity);
+				}
 				break;
 			case 128:
 				_self.MIDINoteOff(parsedData.note, parsedData.velocity);
