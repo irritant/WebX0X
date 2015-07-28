@@ -286,6 +286,7 @@ function WebDrumMachine(element, context) {
 
 	this.element = element;
 	this.context = context;
+	this.midi = null;
 	this.sequenceTimer = null;
 	this.voiceControllers = [];
 	this.playing = false;
@@ -314,7 +315,7 @@ function WebDrumMachine(element, context) {
 				_self.updateTempo();
 			}, 
 			function(timer, status, textStatus) {
-				console.log(textStatus);
+				alert('Error initializing the sequencer: ' + textStatus);
 			});
 
 		_self.element.querySelector('#play-button').addEventListener('click', function() {
@@ -344,6 +345,8 @@ function WebDrumMachine(element, context) {
 		if (FastClick) {
 			FastClick.attach(_self.element);
 		}
+
+		_self.configureMIDIAccess();
 
 		return _self;
 	}
@@ -390,6 +393,122 @@ function WebDrumMachine(element, context) {
 		var tempo = parseFloat(_self.element.querySelector('#tempo-input').value);
 		if (!isNaN(tempo)) {
 			_self.sequenceTimer.updateIntervalWithTempo(tempo, 1/16);
+		}
+	}
+
+	this.configureMIDIAccess = function() {
+		if (navigator.requestMIDIAccess) {
+			navigator.requestMIDIAccess({
+				sysex: false
+			}).then(
+			function(midiAccess) {
+				_self.midi = midiAccess;
+				_self.midi.onstatechange = function() {
+					_self.configureMIDIInputs();
+					_self.enableMIDIControls(_self.midi.inputs.size > 0);
+					_self.showMIDIConnectionAlerts(_self.midi.inputs.size == 0);
+					_self.showMIDIErrorAlerts(false);
+				}
+				_self.configureMIDIInputs();
+				_self.enableMIDIControls(_self.midi.inputs.size > 0);
+				_self.showMIDIConnectionAlerts(_self.midi.inputs.size == 0);
+				_self.showMIDIErrorAlerts(false);
+			},
+			function() {
+				_self.enableMIDIControls(false);
+				_self.showMIDIErrorAlerts(true);
+			});
+		} else {
+			_self.enableMIDIControls(false);
+			_self.showMIDIErrorAlerts(true);
+		}
+	}
+
+	this.configureMIDIInputs = function() {
+		if (_self.midi) {
+			var inputs = _self.midi.inputs.values();
+			for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+				input.value.onmidimessage = function(message) {
+					var parsedData = _self.parseMIDIData(message.data);
+					_self.routeMIDIData(parsedData);
+				}
+			}
+		}
+	}
+
+	this.parseMIDIData = function(data) {
+		return {
+			cmd: data[0] >> 4,
+			channel: data[0] & 0xf,
+			type: data[0] & 0xf0,
+			note: data[1],
+			velocity: data[2]
+		};
+	}
+
+	this.routeMIDIData = function(parsedData) {
+		switch (parsedData.type) {
+			case 144:
+				_self.MIDINoteOn(parsedData.note, parsedData.velocity);
+				break;
+			case 128:
+				_self.MIDINoteOff(parsedData.note, parsedData.velocity);
+				break;
+		};
+	}
+
+	this.MIDINoteOn = function(note, velocity) {
+		// Update the MIDI input display:
+		var noteInputDisplay = document.getElementById('midi-note-input');
+		if (noteInputDisplay) {
+			noteInputDisplay.value = note;
+		}
+		// Search for matching voice controllers to play the note:
+		for (var i = 0; i < _self.voiceControllers.length; i++) {
+			var voiceController = _self.voiceControllers[i];
+			if (voiceController.element) {
+				var noteNumberInput = voiceController.element.querySelector('.midi-note-number');
+				if (noteNumberInput && noteNumberInput.value == note) {
+					voiceController.drum.trigger();
+				}
+			}
+		}
+	}
+
+	this.MIDINoteOff = function(note, velocity) {
+		// Ignore note off
+	}
+
+	this.enableMIDIControls = function(enable) {
+		var elements = document.querySelectorAll('.midi');
+		for (var i = 0; i < elements.length; i++) {
+			if (enable) {
+				elements[i].removeAttribute('disabled');
+			} else {
+				elements[i].setAttribute('disabled', 'disabled');
+			}
+		}
+	}
+
+	this.showMIDIErrorAlerts = function(show) {
+		var elements = document.querySelectorAll('.midi-error-alert');
+		for (var i = 0; i < elements.length; i++) {
+			if (show) {
+				elements[i].style.display = 'block';
+			} else {
+				elements[i].style.display = 'none';
+			}
+		}
+	}
+
+	this.showMIDIConnectionAlerts = function(show) {
+		var elements = document.querySelectorAll('.midi-connection-alert');
+		for (var i = 0; i < elements.length; i++) {
+			if (show) {
+				elements[i].style.display = 'block';
+			} else {
+				elements[i].style.display = 'none';
+			}
 		}
 	}
 

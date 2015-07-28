@@ -42,6 +42,10 @@
 					</button>
 				</div>
 				<div class="transport-controls-right">
+					<form id="midi-input-form">
+						<label for="midi-note-input">MIDI Note In: </label>
+						<input id="midi-note-input" type="number" min="0" max="127" step="1" readonly>
+					</form>
 					<form id="tempo-form">
 						<label for="tempo-input">Tempo: </label>
 						<input id="tempo-input" type="number" value="124" min="32" max="320" step="1">
@@ -547,6 +551,21 @@
 						</div>
 					</div>
 				</div><!-- End Sequencer -->
+
+				<!-- MIDI -->
+				<div class="voice-controller-midi">
+					<div class="voice-controller-midi-header">
+						<h3>MIDI</h3>
+					</div>
+					<div class="voice-controller-midi-body">
+						<div class="control-group">
+							<label>Note</label>
+							<input type="number" class="midi midi-note-number" name="note-number" value="38" min="0" max="127" step="1">
+						</div>
+						<span class="midi-error-alert" style="display: none;">Your browser doesn&rsquo;t support MIDI.</span> 
+						<span class="midi-connection-alert" style="display: none;">No MIDI inputs are available.</span>
+					</div>
+				</div><!-- End MIDI -->
 			</div><!-- End Voice Controller 1 -->
 
 			<!-- Voice Controller 2 -->
@@ -1047,6 +1066,21 @@
 						</div>
 					</div>
 				</div><!-- End Sequencer -->
+
+				<!-- MIDI -->
+				<div class="voice-controller-midi">
+					<div class="voice-controller-midi-header">
+						<h3>MIDI</h3>
+					</div>
+					<div class="voice-controller-midi-body">
+						<div class="control-group">
+							<label>Note</label>
+							<input type="number" class="midi midi-note-number" name="note-number" value="40" min="0" max="127" step="1">
+						</div>
+						<span class="midi-error-alert" style="display: none;">Your browser doesn&rsquo;t support MIDI.</span> 
+						<span class="midi-connection-alert" style="display: none;">No MIDI inputs are available.</span>
+					</div>
+				</div><!-- End MIDI -->
 			</div><!-- End Voice Controller 2 -->
 
 			<!-- Voice Controller 3 -->
@@ -1547,6 +1581,21 @@
 						</div>
 					</div>
 				</div><!-- End Sequencer -->
+
+				<!-- MIDI -->
+				<div class="voice-controller-midi">
+					<div class="voice-controller-midi-header">
+						<h3>MIDI</h3>
+					</div>
+					<div class="voice-controller-midi-body">
+						<div class="control-group">
+							<label>Note</label>
+							<input type="number" class="midi midi-note-number" name="note-number" value="42" min="0" max="127" step="1">
+						</div>
+						<span class="midi-error-alert" style="display: none;">Your browser doesn&rsquo;t support MIDI.</span> 
+						<span class="midi-connection-alert" style="display: none;">No MIDI inputs are available.</span>
+					</div>
+				</div><!-- End MIDI -->
 			</div><!-- End Voice Controller 3 -->
 
 			<!-- Voice Controller 4 -->
@@ -2047,6 +2096,21 @@
 						</div>
 					</div>
 				</div><!-- End Sequencer -->
+
+				<!-- MIDI -->
+				<div class="voice-controller-midi">
+					<div class="voice-controller-midi-header">
+						<h3>MIDI</h3>
+					</div>
+					<div class="voice-controller-midi-body">
+						<div class="control-group">
+							<label>Note</label>
+							<input type="number" class="midi midi-note-number" name="note-number" value="44" min="0" max="127" step="1">
+						</div>
+						<span class="midi-error-alert" style="display: none;">Your browser doesn&rsquo;t support MIDI.</span> 
+						<span class="midi-connection-alert" style="display: none;">No MIDI inputs are available.</span>
+					</div>
+				</div><!-- End MIDI -->
 			</div><!-- End Voice Controller 4 -->
 
 		</div><!-- End Drum Machine -->
