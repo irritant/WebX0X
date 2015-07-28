@@ -78,6 +78,15 @@
 	text-align: right;
 }
 
+.transport-controls form {
+	display: inline-block;
+	margin-right: 0.5em;
+}
+
+.transport-controls form:last-child {
+	margin-right: 0;
+}
+
 .transport-controls button {
 	height: 2em;
 	padding: 2px 1em;
@@ -255,7 +264,7 @@
 }
 
 .voice-controller-sequencer > .voice-controller-sequencer-body {
-	
+	overflow: hidden;
 }
 
 .sequencer-step-group {
@@ -328,6 +337,43 @@
 	color: orange;
 }
 
+.voice-controller-midi {
+	padding: 5px;
+}
+
+.voice-controller-midi > .voice-controller-midi-header {
+	
+}
+
+.voice-controller-midi > .voice-controller-midi-header > h3 {
+	margin: 0 0 5px 0;
+	line-height: 1.0;
+}
+
+.voice-controller-midi > .voice-controller-midi-body {
+	overflow: hidden;
+}
+
+.voice-controller-midi > .voice-controller-midi-body > .control-group > input[type="number"] {
+	display: inline-block;
+	width: 3em;
+	height: 2em;
+	padding: 2px;
+	margin-top: 5px;
+	margin-right: 0.5em;
+	background: 0;
+	background-color: #e7e7e7;
+	border: 1px solid #4c4c4c;
+	border-radius: 5px;
+	font-size: 1em;
+}
+
+.midi-error-alert,
+.midi-connection-alert {
+	color: orange;
+	font-weight: bold;
+}
+
 @media (max-width: 1279px) {
 
 	.voice-controller > .voice-controller-body {
@@ -371,6 +417,19 @@
 }
 
 @media (max-width: 699px) {
+
+	.transport-controls > .transport-controls-left {
+		width: 100%;
+		float: none;
+		border-bottom: 1px solid #e7e7e7;
+		padding-bottom: 5px;
+	}
+
+	.transport-controls > .transport-controls-right {
+		width: 100%;
+		float: none;
+		padding-top: 5px;
+	}
 
 	.voice-controller-row {
 		-webkit-flex: none;

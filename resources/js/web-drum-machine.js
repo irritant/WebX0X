@@ -498,7 +498,7 @@ function WebDrumMachine(element, context) {
 		var elements = document.querySelectorAll('.midi-error-alert');
 		for (var i = 0; i < elements.length; i++) {
 			if (show) {
-				elements[i].style.display = 'block';
+				elements[i].style.display = 'inline-block';
 			} else {
 				elements[i].style.display = 'none';
 			}
@@ -509,7 +509,7 @@ function WebDrumMachine(element, context) {
 		var elements = document.querySelectorAll('.midi-connection-alert');
 		for (var i = 0; i < elements.length; i++) {
 			if (show) {
-				elements[i].style.display = 'block';
+				elements[i].style.display = 'inline-block';
 			} else {
 				elements[i].style.display = 'none';
 			}
