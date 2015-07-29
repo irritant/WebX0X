@@ -3,6 +3,10 @@ WebX0X is a drum synthesizer and sequencer built using the Web Audio API. All so
 
 _WebX0X supports recent versions of Chrome, Firefox and Safari on desktop (Chrome works best). It has also been tested in Mobile Safari (iOS 8)._ 
 
+## Change Log
+### July 29, 2015
+* Added MIDI note input.
+
 ## License
 WebX0X is made available under the MIT License. See LICENSE.txt for details.  
 
