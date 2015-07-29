@@ -2193,7 +2193,9 @@ function WebDrumMachine(element, context) {
 			if (voiceController.element) {
 				var noteNumberInput = voiceController.element.querySelector('.midi-note-number');
 				if (noteNumberInput && noteNumberInput.value == note) {
-					voiceController.drum.trigger();
+					if (!voiceController.muted) {
+						voiceController.drum.trigger();
+					}
 				}
 			}
 		}
