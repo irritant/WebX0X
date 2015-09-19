@@ -522,9 +522,7 @@ function WebDrumMachine(element, context) {
 }
 
 window.addEventListener('load', function() {
-	document.querySelector('.mask .start').addEventListener('click', function(e) {
-		e.preventDefault();
-
+	function initialize() {
 		// Hide the mask:
 		document.querySelector('.mask').classList.add('hidden');
 
@@ -545,5 +543,15 @@ window.addEventListener('load', function() {
 		window.drumMachine = new WebDrumMachine(
 			document.querySelector('#drum-machine'), 
 			context);
+	}
+
+	document.querySelector('.mask .start').addEventListener('mouseup', function(e) {
+		e.preventDefault();
+		initialize();
+	});
+	
+	document.querySelector('.mask .start').addEventListener('touchend', function(e) {
+		e.preventDefault();
+		initialize();
 	});
 });
